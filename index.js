@@ -1,10 +1,9 @@
 let counter;
-let workDuration = 15;
-let shortBreakDuration = 5;
-let LongBreakDuration = 10
+let workDuration = 1500;
+let LongBreakDuration = 900
+let shortBreakDuration = 300;
 let workRemaining = workDuration;
-let pomodoroCount = 0;
-let timerRunning; 
+let timerRunning;
 
 
 window.onload = function () {
@@ -17,6 +16,15 @@ window.onload = function () {
 
     const resetButton = document.querySelector('#reset');
     resetButton.addEventListener('click', sessionReset);
+
+    const workButton = document.querySelector('#work');
+    workButton.addEventListener('click', work);
+
+    const shortBreakButton = document.querySelector('#short-break');
+    shortBreakButton.addEventListener('click', shortBreak);
+
+    const longBreakButton = document.querySelector('#long-break');
+    longBreakButton.addEventListener('click', longBreak);
 
 }
 
@@ -36,42 +44,54 @@ function sessionPause() {
     clearInterval(counter);
 }
 
+function sessionResume() {
+    if (!timerRunning) {
+        timer(sessionRemaining)
+        timerRunning = true;
+    }
+}
+
+
 function sessionReset() {
     clearInterval(counter);
     displayTimer(workDuration);
     workRemaining = workDuration;
-    pomodoroCount = 0;
     timerRunning = undefined;
 }
 
 
-function timer(count) {
-    displayTimer(count);
-    /* console.log(count); */
+function work() {
+    timer(workDuration);
+}
 
-    return new Promise(resolve => {
-        counter = setInterval(() => {
-            count = count - 1;
-            if (count < 0) {
-                clearInterval(counter);
-                resolve(); //it is resolved when the count finishes
-            }
-            workRemaining = count;
-            if (count >= 0){
-                displayTimer(count);
-                /* console.log(count); */
-            }
-        }, 1000);
-    });
+function shortBreak() {
+    timer(shortBreakDuration);
+}
+
+function longBreak() {
+    timer(LongBreakDuration);
+}
+
+function timer(count) {
+    displayTimer(count)
+    clearInterval(counter);
+
+    counter = setInterval(() => {
+        count = count - 1;
+        if (count < 0) {
+            clearInterval(counter);
+            return;
+        }
+        displayTimer(count)
+    }, 1000);
 }
 
 
 function displayTimer(seconds) {
-        const minutesRemaining = Math.floor(seconds / 60);
-        const secondsRemaining = seconds % 60;
-        const displayText = `${minutesRemaining < 10 ? '0' : ''}${minutesRemaining}:${secondsRemaining < 10 ? '0' : ''}${secondsRemaining}`;
+    const minutesRemaining = Math.floor(seconds / 60);
+    const secondsRemaining = seconds % 60;
+    const displayText = `${minutesRemaining < 10 ? '0' : ''}${minutesRemaining}:${secondsRemaining < 10 ? '0' : ''}${secondsRemaining}`;
 
-        const timerText = document.querySelector("#timer-text");
-        timerText.textContent = displayText;
+    const timerText = document.querySelector("#timer-text");
+    timerText.textContent = displayText;
 }
-
