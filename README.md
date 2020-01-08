@@ -7,3 +7,5 @@ PomodoroJS is a simple implementation of the pomodoro technique using HTML, CSS,
 > Each interval is known as a pomodoro, from the Italian word for 'tomato', after the tomato-shaped kitchen timer that Cirillo used as a university student.
 
 [Source: Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique)
+
+![PromodoroJS](PomodoroJS-img.jpg)
