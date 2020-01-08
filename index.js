@@ -94,4 +94,6 @@ function displayTimer(seconds) {
 
     const timerText = document.querySelector("#timer-text");
     timerText.textContent = displayText;
+    document.title = 'PomodoroJS - ' + displayText;
+
 }
