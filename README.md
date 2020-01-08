@@ -1,5 +1,6 @@
 # PomodoroJS
 PomodoroJS is a simple implementation of the pomodoro technique using HTML, CSS, Javascript
+
 [Live Demo](https://rex-daemon.github.io/PomodoroJS/)
 
 > The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s.
@@ -8,4 +9,4 @@ PomodoroJS is a simple implementation of the pomodoro technique using HTML, CSS,
 
 [Source: Wikipedia](https://en.wikipedia.org/wiki/Pomodoro_Technique)
 
-![PromodoroJS](PomodoroJS-img.jpg)
+![PromodoroJS](PomodoroJS-img.png)
